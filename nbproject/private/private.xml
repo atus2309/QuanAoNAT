@@ -3,15 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Admin/Desktop/QuanAoNAT/src/MainForm.java</file>
-            <file>file:/C:/Users/Admin/Desktop/QuanAoNAT/src/view/JPanelSanPham.java</file>
-            <file>file:/C:/Users/Admin/Desktop/QuanAoNAT/src/view/JPanelKhachHang.java</file>
             <file>file:/C:/Users/Admin/Desktop/QuanAoNAT/src/view/JPanelQuanLyHoaDon.java</file>
-            <file>file:/C:/Users/Admin/Desktop/QuanAoNAT/src/view/JPanelQuanLyNhanVien.java</file>
             <file>file:/C:/Users/Admin/Desktop/QuanAoNAT/src/view/JPanelBaoCao.java</file>
             <file>file:/C:/Users/Admin/Desktop/QuanAoNAT/src/view/JDialogDangNhap.java</file>
             <file>file:/C:/Users/Admin/Desktop/QuanAoNAT/src/view/JFrameLogin.java</file>
-            <file>file:/C:/Users/Admin/Desktop/QuanAoNAT/src/utils/readme</file>
+            <file>file:/C:/Users/Admin/Desktop/QuanAoNAT/src/view/JPanelSanPham.java</file>
+            <file>file:/C:/Users/Admin/Desktop/QuanAoNAT/src/view/JDialogSuaSanPham.java</file>
+            <file>file:/C:/Users/Admin/Desktop/QuanAoNAT/src/MainForm.java</file>
         </group>
     </open-files>
 </project-private>
