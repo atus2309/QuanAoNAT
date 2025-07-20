@@ -3,6 +3,7 @@ import javax.swing.JPanel;
 import view.JDialogDangNhap;
 import view.JFrameLogin;
 import view.JPanelBaoCao;
+import view.JPanelDanhMuc;
 import view.JPanelKhachHang;
 import view.JPanelPOS;
 import view.JPanelQuanLyHoaDon;
@@ -40,12 +41,13 @@ public class MainForm extends javax.swing.JFrame {
         jToolBar1 = new javax.swing.JToolBar();
         jButton7 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
-        jButton6 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         pnlMain = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -56,7 +58,8 @@ public class MainForm extends javax.swing.JFrame {
 
         jToolBar1.setRollover(true);
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Home.png"))); // NOI18N
+        jButton7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon_1752901608_32x32.png"))); // NOI18N
         jButton7.setText("Trang chủ");
         jButton7.setFocusable(false);
         jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -68,6 +71,8 @@ public class MainForm extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton7);
 
+        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Product.png"))); // NOI18N
         jButton3.setText("Sản phẩm");
         jButton3.setFocusable(false);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -79,6 +84,21 @@ public class MainForm extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton3);
 
+        jButton8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon_1752901770_32x32.png"))); // NOI18N
+        jButton8.setText("Danh mục");
+        jButton8.setFocusable(false);
+        jButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton8);
+
+        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon_1752901854_32x32.png"))); // NOI18N
         jButton2.setText("Hoá đơn");
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -90,6 +110,8 @@ public class MainForm extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton2);
 
+        jButton4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon_1752901895_32x32.png"))); // NOI18N
         jButton4.setText("Nhân viên");
         jButton4.setFocusable(false);
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -101,6 +123,8 @@ public class MainForm extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton4);
 
+        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon_1752901929_32x32.png"))); // NOI18N
         jButton5.setText("Báo cáo");
         jButton5.setFocusable(false);
         jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -113,17 +137,8 @@ public class MainForm extends javax.swing.JFrame {
         jToolBar1.add(jButton5);
         jToolBar1.add(jSeparator1);
 
-        jButton6.setText("Thoát");
-        jButton6.setFocusable(false);
-        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButton6);
-
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon_1752901998_32x32.png"))); // NOI18N
         jButton1.setText("Đăng xuất");
         jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -135,6 +150,19 @@ public class MainForm extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton1);
 
+        jButton6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon_1752902053_32x32.png"))); // NOI18N
+        jButton6.setText("Thoát");
+        jButton6.setFocusable(false);
+        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton6);
+
         pnlMain.setPreferredSize(new java.awt.Dimension(1064, 812));
 
         javax.swing.GroupLayout pnlMainLayout = new javax.swing.GroupLayout(pnlMain);
@@ -145,7 +173,7 @@ public class MainForm extends javax.swing.JFrame {
         );
         pnlMainLayout.setVerticalGroup(
             pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 812, Short.MAX_VALUE)
+            .addGap(0, 863, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Hệ thống");
@@ -174,7 +202,7 @@ public class MainForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlMain, javax.swing.GroupLayout.PREFERRED_SIZE, 863, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -218,6 +246,11 @@ public class MainForm extends javax.swing.JFrame {
         MainForm mainForm = new MainForm();
         mainForm.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        showPanel(new JPanelDanhMuc());
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     public void showPanel(JPanel panel) {
         pnlMain.removeAll();
@@ -273,6 +306,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
