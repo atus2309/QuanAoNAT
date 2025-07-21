@@ -4,19 +4,134 @@
  */
 package view;
 
+import dao.CategoryDAO;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Category;
+
 /**
  *
  * @author Admin
  */
 public class JPanelDanhMuc extends javax.swing.JPanel {
-
+    private CategoryDAO dao = new CategoryDAO();
+    private int currentRow = -1;
     /**
      * Creates new form JPanelDanhMuc
      */
     public JPanelDanhMuc() {
         initComponents();
+        fillTable();
+    }
+      private void fillTable() {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0); // Xóa tất cả các hàng cũ
+        try {
+            List<Category> list = dao.selectAll();
+            for (int i = 0; i < list.size(); i++) {
+                Category category = list.get(i);
+                // Cột STT, Tên danh mục, Sản phẩm đã bán (tạm thời)
+                model.addRow(new Object[]{i + 1, category.getCategoryName(), 0});
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Lỗi truy vấn dữ liệu!");
+            e.printStackTrace();
+        }
+    }
+    private void setForm(Category cat) {
+        jTextField1.setText(cat.getCategoryName());
     }
 
+    private Category getForm() {
+        Category cat = new Category();
+        cat.setCategoryName(jTextField1.getText());
+        return cat;
+    }
+    
+    private void clearForm() {
+        jTextField1.setText("");
+        this.currentRow = -1;
+        jTable1.clearSelection();
+    }
+
+    private void insert() {
+        Category model = getForm();
+        try {
+            dao.insert(model);
+            this.fillTable();
+            this.clearForm();
+            JOptionPane.showMessageDialog(this, "Thêm mới thành công!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Thêm mới thất bại!");
+            e.printStackTrace();
+        }
+    }
+
+    private void update() {
+        // Lấy category_id từ dòng được chọn
+        int selectedRow = jTable1.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn một danh mục để sửa.");
+            return;
+        }
+        
+        String categoryNameToFind = (String) jTable1.getValueAt(selectedRow, 1);
+        List<Category> allCategories = dao.selectAll();
+        int categoryId = -1;
+        for(Category cat : allCategories) {
+            if(cat.getCategoryName().equals(categoryNameToFind)){
+                categoryId = cat.getCategoryId();
+                break;
+            }
+        }
+
+        if (categoryId != -1) {
+            Category model = getForm();
+            model.setCategoryId(categoryId);
+            try {
+                dao.update(model);
+                this.fillTable();
+                JOptionPane.showMessageDialog(this, "Cập nhật thành công!");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Cập nhật thất bại!");
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    private void delete() {
+        int selectedRow = jTable1.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn một danh mục để xóa.");
+            return;
+        }
+        
+        int confirm = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn xóa không?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            String categoryNameToFind = (String) jTable1.getValueAt(selectedRow, 1);
+            List<Category> allCategories = dao.selectAll();
+            int categoryId = -1;
+            for(Category cat : allCategories) {
+                if(cat.getCategoryName().equals(categoryNameToFind)){
+                    categoryId = cat.getCategoryId();
+                    break;
+                }
+            }
+
+            if (categoryId != -1) {
+                try {
+                    dao.delete(categoryId);
+                    this.fillTable();
+                    this.clearForm();
+                    JOptionPane.showMessageDialog(this, "Xóa thành công!");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Xóa thất bại!");
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,12 +160,27 @@ public class JPanelDanhMuc extends javax.swing.JPanel {
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton2.setText("Sửa");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton3.setText("Xoá");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton4.setText("Thêm");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel5.setText("Thông tin danh mục");
@@ -105,15 +235,20 @@ public class JPanelDanhMuc extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "STT", "Tên danh mục", "Sản phẩm đã bán"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jButton5.setText("|<");
@@ -164,6 +299,30 @@ public class JPanelDanhMuc extends javax.swing.JPanel {
                 .addContainerGap(42, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        insert();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        update();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        delete();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        currentRow = jTable1.getSelectedRow();
+        if (currentRow != -1) {
+            String categoryName = (String) jTable1.getValueAt(currentRow, 1);
+            jTextField1.setText(categoryName);
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
